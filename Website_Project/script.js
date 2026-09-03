@@ -1,5 +1,4 @@
 const form = document.getElementById("loginForm");
-const form = document.getElementById("loginForm");
 const studentNumber = document.getElementById("studentNumber");
 const password = document.getElementById("password");
 const loginBtn = document.getElementById("loginBtn");
