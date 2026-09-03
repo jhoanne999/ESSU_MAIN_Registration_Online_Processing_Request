@@ -1,3 +1,4 @@
+const db = require('./db');
 const form = document.getElementById("registerForm");
 
 const studentNumber = document.getElementById("studentNumber");
