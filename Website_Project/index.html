@@ -10,11 +10,21 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
 
+  <style>
+    body {
+      background-color: #0c2a1e;
+      background-image:
+        radial-gradient(circle at 18% 20%, rgba(212, 175, 120, 0.10), transparent 40%),
+        radial-gradient(circle at 82% 78%, rgba(212, 175, 120, 0.08), transparent 45%),
+        repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.015) 0px, rgba(255, 255, 255, 0.015) 1px, transparent 1px, transparent 14px),
+        linear-gradient(160deg, #0a2318 0%, #123725 45%, #0c2a1e 100%);
+      background-attachment: fixed;
+    }
+  </style>
 </head>
 
 
-<body class="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat
-bg-green-700">
+<body class="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat">
 
 <header class = "fixed top-0 left-0 right-0 z-50 bg-green-950 px-6 py-2">
   <img src="./img/logo2.png" alt="logo" class="w-12 h-12">
@@ -78,4 +88,3 @@ bg-green-700">
 <script src="script.js"></script>
 </body>
 </html>
-     
