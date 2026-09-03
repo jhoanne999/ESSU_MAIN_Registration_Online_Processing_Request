@@ -1,4 +1,5 @@
 const form = document.getElementById("loginForm");
+const form = document.getElementById("loginForm");
 const studentNumber = document.getElementById("studentNumber");
 const password = document.getElementById("password");
 const loginBtn = document.getElementById("loginBtn");
@@ -12,7 +13,7 @@ loginBtn.addEventListener("mouseenter", () => {
 loginBtn.addEventListener("mouseleave", () => {
     loginBtn.style.transform = "translateY(0)";
     loginBtn.style.boxShadow = "none";
-});
+}); 
 
 loginBtn.addEventListener("mousedown", () => {
     loginBtn.style.transform = "scale(0.95)";
