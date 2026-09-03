@@ -158,7 +158,7 @@ event.preventDefault();
         registerBtn.disabled = true;
         registerBtn.textContent = "Registering...";
 
-        const response = await fetch("/register", {
+        const response = await fetch("http://localhost:3000/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
