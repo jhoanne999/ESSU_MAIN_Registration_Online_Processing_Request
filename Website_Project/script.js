@@ -1,22 +1,20 @@
-// --- Account store (localStorage-based, since there's no backend yet) ---
+import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+import { collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+import { auth, db } from "./firebase.js";
+
+// --- Legacy hardcoded accounts (admin / superadmin only, until those are migrated to Firebase) ---
 const ACCOUNTS_KEY = "essu_accounts";
 
 function loadAccounts() {
   const raw = localStorage.getItem(ACCOUNTS_KEY);
   if (raw) return JSON.parse(raw);
 
-  // Seed default accounts on first run
   const defaults = [
     { studentId: "superadmin", password: "SuperAdmin@123", role: "superadmin", fullName: "Super Admin", email: "" },
-    { studentId: "admin", password: "admin123", role: "admin", fullName: "Admin", email: "" },
-    { studentId: "student24-12345", password: "studentpass123", role: "student", fullName: "Student", email: "" }
+    { studentId: "admin", password: "admin123", role: "admin", fullName: "Admin", email: "" }
   ];
   localStorage.setItem(ACCOUNTS_KEY, JSON.stringify(defaults));
   return defaults;
-}
-
-function saveAccounts(accounts) {
-  localStorage.setItem(ACCOUNTS_KEY, JSON.stringify(accounts));
 }
 
 // --- Login form logic ---
@@ -61,7 +59,7 @@ function hideError() {
     errorMsg.style.opacity = "0";
 }
 
-form.addEventListener("submit", function (event) {
+form.addEventListener("submit", async function (event) {
     event.preventDefault();
     hideError();
 
@@ -105,31 +103,72 @@ form.addEventListener("submit", function (event) {
         return;
     }
 
-    const accounts = loadAccounts();
-    const match = accounts.find(
-        (acc) => acc.studentId === username && acc.password === userPassword
-    );
+    loginBtn.disabled = true;
+    loginBtn.textContent = "Logging in...";
 
-    if (!match) {
-        shake(studentNumber);
-        shake(password);
-        showError("Invalid username or password.");
-        return;
-    }
+    try {
+        // 1. Check legacy hardcoded admin / superadmin accounts first
+        const accounts = loadAccounts();
+        const localMatch = accounts.find(
+            (acc) => acc.studentId === username && acc.password === userPassword
+        );
 
-    // Store who's logged in for this session
-    sessionStorage.setItem(
-        "essu_currentUser",
-        JSON.stringify({ studentId: match.studentId, role: match.role, fullName: match.fullName })
-    );
+        if (localMatch) {
+            sessionStorage.setItem(
+                "essu_currentUser",
+                JSON.stringify({ studentId: localMatch.studentId, role: localMatch.role, fullName: localMatch.fullName })
+            );
 
-    console.log(`${match.role} login successful.`);
+            if (localMatch.role === "superadmin") {
+                window.location.href = "superadmin-dashboard.html";
+            } else {
+                window.location.href = "admin-dashboard.html";
+            }
+            return;
+        }
 
-    if (match.role === "superadmin") {
-        window.location.href = "superadmin-dashboard.html";
-    } else if (match.role === "admin") {
-        window.location.href = "admin-dashboard.html";
-    } else {
+        // 2. Otherwise, look up the student's email in Firestore by their Student ID
+        const studentsRef = collection(db, "students");
+        const q = query(studentsRef, where("studentNumber", "==", username));
+        const snapshot = await getDocs(q);
+
+        if (snapshot.empty) {
+            shake(studentNumber);
+            shake(password);
+            showError("Invalid username or password.");
+            return;
+        }
+
+        const studentDoc = snapshot.docs[0].data();
+
+        // 3. Sign in with Firebase Auth using that email + the entered password
+        const userCredential = await signInWithEmailAndPassword(auth, studentDoc.email, userPassword);
+        const user = userCredential.user;
+
+        sessionStorage.setItem(
+            "essu_currentUser",
+            JSON.stringify({ uid: user.uid, studentId: studentDoc.studentNumber, role: "student", fullName: studentDoc.fullName })
+        );
+
         window.location.href = "student-dashboard.html";
+
+    } catch (error) {
+        console.error("Login error:", error);
+
+        switch (error.code) {
+            case "auth/invalid-credential":
+            case "auth/wrong-password":
+            case "auth/user-not-found":
+                shake(studentNumber);
+                shake(password);
+                showError("Invalid username or password.");
+                break;
+            default:
+                showError("Failed to log in. Please try again.");
+        }
+
+    } finally {
+        loginBtn.disabled = false;
+        loginBtn.textContent = "Login";
     }
 });

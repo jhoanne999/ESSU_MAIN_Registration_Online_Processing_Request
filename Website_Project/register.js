@@ -9,6 +9,10 @@ const confirmPassword = document.getElementById("confirmPassword");
 const registerBtn = document.getElementById("registerBtn");
 const errorMsg = document.getElementById("errorMsg");
 
+import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+import { doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+import { auth, db } from "./firebase.js";
+
 if (registerBtn) {
 registerBtn.addEventListener("mouseenter", () => {
 registerBtn.style.transform = "translateY(-2px)";
@@ -158,31 +162,42 @@ event.preventDefault();
         registerBtn.disabled = true;
         registerBtn.textContent = "Registering...";
 
-        const response = await fetch("http://localhost:3000/register", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                studentNumber: studentID,
-                fullName: name,
-                email: userEmail,
-                password: userPassword
-            })
+        // 1. Create the user in Firebase Authentication
+        const userCredential = await createUserWithEmailAndPassword(
+            auth,
+            userEmail,
+            userPassword
+        );
+
+        const user = userCredential.user;
+
+        // 2. Save the extra profile fields in Firestore, under the user's UID
+        await setDoc(doc(db, "students", user.uid), {
+            studentNumber: studentID,
+            fullName: name,
+            email: userEmail,
+            createdAt: serverTimestamp()
         });
 
-        const result = await response.json();
-
-        if (response.ok) {
-            alert("Registration Successful!");
-            window.location.href = "index.html";
-        } else {
-            showError(result.error || "Registration failed.");
-        }
-
+        alert("Registration Successful!");
+        window.location.href = "index.html";
+        
     } catch (error) {
         console.error("Submission Error:", error);
-        showError("Failed to connect to the server.");
+
+        switch (error.code) {
+            case "auth/email-already-in-use":
+                showError("This email is already registered.");
+                break;
+            case "auth/invalid-email":
+                showError("Please enter a valid email address.");
+                break;
+            case "auth/weak-password":
+                showError("Password is too weak.");
+                break;
+            default:
+                showError("Failed to register. Please try again.");
+        }
 
     } finally {
         registerBtn.disabled = false;
