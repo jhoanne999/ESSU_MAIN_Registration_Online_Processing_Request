@@ -1,0 +1,262 @@
+:root{
+    --forest-950:#0b2116;
+    --forest-900:#0f2b1d;
+    --forest-800:#153a27;
+    --forest-700:#1c4a32;
+    --forest-600:#265d3f;
+    --forest-line:rgba(255,255,255,0.14);
+    --gold-600:#c99a2e;
+    --gold-500:#e3b53f;
+    --gold-400:#f0cd6c;
+    --white:#ffffff;
+    --ink:#0f2115;
+    --body-text:#3d493f;
+    --muted:#c9d8cd;
+    --mint-tint:#eef5ef;
+    --radius:14px;
+    --shadow:0 18px 40px -18px rgba(6,20,12,0.55);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--white);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.logotype{font-family:'Poppins',sans-serif;}
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px;}
+  button, .btn{font-family:'Inter',sans-serif;cursor:pointer;}
+  section{padding:76px 0;}
+
+  /* =========================================================
+     1. TOP BAR — Republic Seal, Home, auxiliary links, search,
+        Citizen's Charter link (GWTD Sec. 3.1)
+     ========================================================= */
+  .top-bar{background:var(--forest-950);color:var(--muted);font-size:13px;border-bottom:1px solid var(--forest-line);}
+  .top-bar .wrap{display:flex;align-items:center;justify-content:space-between;padding:9px 28px;gap:18px;flex-wrap:wrap;}
+  .top-bar-left{display:flex;align-items:center;gap:14px;}
+  .seal{
+    width:26px;height:26px;border-radius:50%;
+    border:1.4px solid var(--gold-500);color:var(--gold-400);
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .top-bar nav{display:flex;gap:18px;flex-wrap:wrap;}
+  .top-bar a{text-decoration:none;color:var(--muted);white-space:nowrap;}
+  .top-bar a:hover{color:var(--gold-400);}
+  .top-bar a.charter{color:var(--gold-400);font-weight:600;display:inline-flex;align-items:center;gap:5px;}
+  .top-bar-right{display:flex;align-items:center;gap:16px;}
+  .search-box{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,0.07);border:1px solid var(--forest-line);border-radius:999px;padding:6px 12px;}
+  .search-box input{background:none;border:none;outline:none;color:var(--cream, #fff);font-size:12.5px;width:120px;}
+  .search-box input::placeholder{color:#8fa596;}
+  .search-box svg{flex-shrink:0;color:#8fa596;}
+
+  /* =========================================================
+     2. MASTHEAD — Agency logo, "Republic of the Philippines",
+        divider, department & agency name (GWTD Sec. 3.1)
+     ========================================================= */
+  .masthead .wrap{display:flex;align-items:center;justify-content:space-between;padding:16px 28px;gap:24px;}
+   .masthead-left{display:flex;align-items:center;gap:18px;min-width:0;}
+   .masthead-right{display:flex;align-items:center;gap:22px;flex-shrink:0;}
+   .logo-slot{width:56px;height:56px;border-radius:50%;background:var(--forest-800);border:1.5px solid var(--gold-500);display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;}
+   .masthead{background:var(--forest-900);}
+
+  .logo-slot img{width:100%;height:100%;object-fit:contain;}
+  .logo-slot .fallback{color:var(--gold-400);font-family:'Poppins',sans-serif;font-weight:700;font-size:13px;}
+  .logo-label{font-size:10px;letter-spacing:.06em;color:#8fa596;text-transform:uppercase;text-align:center;margin-top:4px;}
+  .logo-col{display:flex;flex-direction:column;align-items:center;flex-shrink:0;}
+  .masthead-divider{width:1px;align-self:stretch;background:var(--forest-line);flex-shrink:0;}
+  .masthead-text{color:#fff;min-width:0;}
+  .masthead-text .country{font-size:11.5px;letter-spacing:.08em;color:var(--gold-400);font-weight:600;text-transform:uppercase;margin:0 0 4px;}
+  .masthead-text .agency{font-size:19px;font-weight:700;margin:0;}
+  .masthead-text .tagline{font-size:13px;color:#e3b53f;margin:3px 0 0;}
+
+  /* =========================================================
+     3. AUXILIARY MENU — site navigation, max two levels
+        (GWTD Sec. 3.1, optional)
+     ========================================================= */
+  .aux-menu{background:var(--forest-800);border-top:1px solid var(--forest-line);border-bottom:1px solid var(--forest-line);position:sticky;top:0;z-index:40;}
+  .aux-menu .wrap{display:flex;align-items:center;justify-content:space-between;padding:12px 28px;gap:20px;}
+  .aux-menu ul{list-style:none;display:flex;gap:28px;margin:0;padding:0;}
+  .aux-menu a{text-decoration:none;color:#fff;font-size:14.5px;font-weight:500;position:relative;padding:6px 0;}
+  .aux-menu a.active,.aux-menu a:hover{color:var(--gold-400);}
+  .aux-menu a.active::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:var(--gold-500);border-radius:2px;}
+  .aux-actions{display:flex;gap:10px;align-items:center;flex-shrink:0;}
+  .btn-ghost{background:transparent;border:1px solid var(--forest-line);color:#fff;padding:11px 26px;border-radius:999px;font-size:13px;font-weight:500;text-decoration:none;transition:.15s ease;}
+  .btn-ghost:hover{border-color:var(--gold-500);color:var(--gold-400);}
+  .btn-gold{background:linear-gradient(180deg,var(--gold-400),var(--gold-600));border:none;color:#231802;padding:11px 26px;border-radius:999px;font-size:13px;font-weight:700;text-decoration:none;box-shadow:0 8px 18px -8px rgba(227,181,63,.7);transition:.15s ease;display:inline-block;}
+  .btn-gold:hover{filter:brightness(1.06);transform:translateY(-1px);}
+  .nav-toggle{display:none;background:none;border:none;color:#fff;font-size:24px;line-height:1;padding:4px;}
+  .mobile-menu{display:none;background:var(--forest-800);border-top:1px solid var(--forest-line);padding:10px 0 18px;}
+  .mobile-menu.open{display:block;}
+  .mobile-menu ul{list-style:none;margin:0;padding:0 28px;display:grid;gap:2px;}
+  .mobile-menu a{display:block;padding:12px 0;color:#fff;text-decoration:none;font-size:15px;border-bottom:1px solid var(--forest-line);}
+  .mobile-menu a:hover{color:var(--gold-400);}
+  .mobile-menu .mm-actions{display:flex;gap:10px;padding:16px 28px 0;}
+  .mobile-menu .mm-actions a{border-bottom:none;flex:1;text-align:center;}
+  @media (max-width:920px){
+    .aux-menu ul,.aux-actions .btn-ghost{display:none;}
+    .nav-toggle{display:block;}
+    .masthead-text .agency{font-size:16px;}
+    .top-bar-right .search-box{display:none;}
+  }
+  @media (max-width:600px){
+    .top-bar nav{display:none;}
+    .logo-label{display:none;}
+    .masthead .wrap{padding:14px 20px;gap:10px;}
+    .logo-slot{width:44px;height:44px;}
+    .masthead-text .tagline{display:none;}
+    .masthead-text .agency{font-size:15px;}
+    .masthead-text .country{font-size:10px;}
+  }
+
+  /* =========================================================
+     4. BANNER — homepage visual centerpiece (GWTD Sec. 3.1)
+     ========================================================= */
+  .banner{
+    background:
+      radial-gradient(1100px 480px at 82% -10%, rgba(227,181,63,0.16), transparent 60%),
+      linear-gradient(160deg,var(--forest-900) 0%, var(--forest-800) 55%, var(--forest-700) 100%);
+    color:#fff;
+    padding:72px 0 84px;
+    position:relative;
+    overflow:hidden;
+  }
+  .banner .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;}
+  @media (max-width:900px){.banner .wrap{grid-template-columns:1fr;}}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(227,181,63,0.12);border:1px solid rgba(227,181,63,0.35);color:var(--gold-400);font-size:12.5px;font-weight:600;padding:6px 14px;border-radius:999px;margin-bottom:22px;}
+  .banner h1{font-size:clamp(30px,4vw,44px);line-height:1.16;margin:0 0 18px;font-weight:700;}
+  .banner h1 .accent{color:var(--gold-400);}
+  .banner p.lead{font-size:16.5px;color:var(--muted);max-width:520px;margin:0 0 30px;}
+  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:34px;}
+  .btn-gold.large{padding:14px 28px;font-size:15px;}
+  .btn-outline-lg{padding:14px 26px;border-radius:999px;border:1.5px solid rgba(255,255,255,.35);color:#fff;text-decoration:none;font-weight:600;font-size:15px;transition:.15s ease;}
+  .btn-outline-lg:hover{border-color:var(--gold-500);color:var(--gold-400);}
+  .hero-meta{display:flex;gap:34px;flex-wrap:wrap;}
+  .hero-meta div{min-width:110px;}
+  .hero-meta strong{display:block;font-size:22px;color:var(--gold-400);font-family:'Poppins',sans-serif;}
+  .hero-meta span{font-size:12.5px;color:var(--muted);}
+  .hero-card{background:rgba(255,255,255,0.06);border:1px solid var(--forest-line);border-radius:20px;padding:26px;backdrop-filter:blur(6px);box-shadow:var(--shadow);}
+  .hero-card .row{display:flex;align-items:flex-start;gap:14px;padding:14px 4px;border-bottom:1px solid var(--forest-line);}
+  .hero-card .row:last-child{border-bottom:none;}
+  .hero-card .ico{width:38px;height:38px;border-radius:10px;background:rgba(227,181,63,0.14);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--gold-400);}
+  .hero-card .row h3{margin:0 0 3px;font-size:14.5px;color:#fff;}
+  .hero-card .row p{margin:0;font-size:13px;color:var(--muted);}
+  .hero-card-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+  .hero-card-head span{font-size:12px;letter-spacing:.03em;color:var(--gold-400);font-weight:600;}
+  .status-dot{width:8px;height:8px;border-radius:50%;background:#5fd88a;display:inline-block;margin-right:6px;box-shadow:0 0 0 3px rgba(95,216,138,0.2);}
+
+  /* Transparency / Citizen's Charter strip — required prominent
+     placement on the main page (GWTD Sec. 3.3) */
+  .compliance-strip{background:var(--mint-tint);border-bottom:1px solid #dfeadf;}
+  .compliance-strip .wrap{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:center;padding:16px 28px;}
+  .compliance-chip{display:inline-flex;align-items:center;gap:9px;background:#fff;border:1px solid #d7e6da;border-radius:999px;padding:9px 18px;font-size:13.5px;font-weight:600;color:var(--forest-800);text-decoration:none;}
+  .compliance-chip:hover{border-color:var(--gold-500);color:var(--gold-600);}
+  .compliance-chip .dot{width:8px;height:8px;border-radius:50%;background:var(--gold-500);}
+
+  /* =========================================================
+     5. CONTENT AREA — required plain white background,
+        one-to-three column layout (GWTD Sec. 3.1)
+     ========================================================= */
+  .content-area{background:var(--white);}
+  .section-head{max-width:620px;margin:0 0 44px;}
+  .section-head .tag{color:var(--gold-600);font-weight:600;font-size:13px;margin:0 0 8px;}
+  .section-head h2{font-size:clamp(24px,3vw,32px);margin:0 0 12px;font-weight:700;color:var(--ink);}
+  .section-head p{color:var(--body-text);margin:0;font-size:15.5px;}
+  .section-head.center{margin-left:auto;margin-right:auto;text-align:center;}
+
+  .actions-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  @media (max-width:860px){.actions-grid{grid-template-columns:1fr;}}
+  .action-card{background:#fff;border:1px solid #e6ebe6;border-radius:var(--radius);padding:28px 26px;transition:.18s ease;}
+  .action-card:hover{border-color:var(--gold-500);box-shadow:0 16px 32px -20px rgba(12,40,25,0.2);transform:translateY(-3px);}
+  .action-card .ico{width:46px;height:46px;border-radius:12px;background:var(--forest-900);color:var(--gold-400);display:flex;align-items:center;justify-content:center;margin-bottom:18px;}
+  .action-card h3{margin:0 0 8px;font-size:17px;color:var(--ink);}
+  .action-card p{margin:0 0 16px;font-size:14px;color:var(--body-text);}
+  .action-card .go{font-size:13.5px;font-weight:600;color:var(--forest-700);text-decoration:none;display:inline-flex;align-items:center;gap:6px;}
+  .action-card .go:hover{color:var(--gold-600);}
+
+  .about-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:60px;align-items:center;}
+  @media (max-width:900px){.about-grid{grid-template-columns:1fr;}}
+  .about-grid h2{margin:0 0 14px;}
+  .about-grid p.body-copy{color:var(--body-text);font-size:15.5px;}
+  .about-grid ul{list-style:none;margin:22px 0 0;padding:0;display:grid;gap:14px;}
+  .about-grid li{display:flex;gap:12px;align-items:flex-start;font-size:14.5px;color:var(--ink);}
+  .about-grid li .check{width:20px;height:20px;border-radius:50%;background:var(--gold-500);color:#231802;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;margin-top:1px;}
+  .about-panel{background:linear-gradient(155deg,var(--forest-700),var(--forest-800));border:1px solid var(--forest-line);border-radius:20px;padding:30px;box-shadow:var(--shadow);}
+  .about-panel .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  .about-panel .stat{background:rgba(255,255,255,0.06);border-radius:14px;padding:18px;}
+  .about-panel .stat strong{display:block;font-family:'Poppins',sans-serif;font-size:26px;color:var(--gold-400);}
+  .about-panel .stat span{font-size:12.5px;color:var(--muted);}
+
+  .process-panel{
+  background:linear-gradient(120deg,var(--gold-600),var(--gold-400));
+  border-radius:28px;
+  padding:56px 44px;
+  box-shadow:0 24px 48px -20px rgba(201,154,46,0.45);}
+   .process-panel .section-head .tag{color:var(--forest-900);}
+   .process-panel .section-head h2{color:var(--ink);}
+   .process-panel .section-head p{color:#4a3a12;}
+
+  .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;}
+  @media (max-width:900px){.process-grid{grid-template-columns:1fr 1fr;gap:28px;}}
+  @media (max-width:560px){.process-grid{grid-template-columns:1fr;}}
+  .process-step{position:relative;padding:0 22px 0 0;}
+  .process-step .num{width:40px;height:40px;border-radius:50%;background:var(--forest-900);color:var(--gold-400);display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-weight:700;font-size:15px;margin-bottom:16px;}
+  .process-step h3{font-size:16px;margin:0 0 8px;color:var(--ink);}
+  .process-step p{font-size:13.5px;color:var(--body-text);margin:0;}
+  .process-step:not(:last-child)::after{content:"";position:absolute;top:20px;left:calc(100% - 12px);width:calc(100% - 20px);border-top:2px dashed #d9d2b8;}
+  @media (max-width:900px){.process-step:not(:last-child)::after{display:none;}}
+
+  .band{background:linear-gradient(120deg,var(--gold-500),var(--gold-400));color:#231802;border-radius:22px;padding:40px 44px;display:flex;justify-content:space-between;align-items:center;gap:26px;flex-wrap:wrap;}
+  .band h2{margin:0 0 8px;font-size:24px;}
+  .band p{margin:0;font-size:14.5px;max-width:480px;color:#3a2c07;}
+  .band .btn-dark{background:var(--forest-900);color:#fff;padding:13px 26px;border-radius:999px;text-decoration:none;font-weight:600;font-size:14.5px;white-space:nowrap;}
+  .band .btn-dark:hover{background:var(--forest-950);}
+
+  .faq-list{display:grid;gap:14px;max-width:780px;margin:0 auto;}
+  .faq-item{background:#fff;border:1px solid #e6ebe6;border-radius:12px;overflow:hidden;}
+  .faq-item summary{list-style:none;cursor:pointer;padding:18px 22px;font-weight:600;font-size:15px;display:flex;justify-content:space-between;align-items:center;color:var(--ink);}
+  .faq-item summary::-webkit-details-marker{display:none;}
+  .faq-item summary::after{content:"+";font-size:20px;color:var(--gold-600);font-weight:400;}
+  .faq-item[open] summary::after{content:"\2013";}
+  .faq-item .a{padding:0 22px 20px;color:var(--body-text);font-size:14px;margin:0;}
+
+  /* =========================================================
+     6. AGENCY FOOTER — Downloads, Archives, Site Map, FAQs;
+        identical on every page (GWTD Sec. 3.1)
+     ========================================================= */
+  .agency-footer{background:var(--forest-800);color:var(--muted);}
+  .agency-footer .wrap{padding:52px 28px 40px;}
+  .agency-footer .note{font-size:12.5px;color:#8fa596;margin:0 0 30px;}
+  .footer-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1.1fr;gap:36px;}
+  @media (max-width:860px){.footer-grid{grid-template-columns:1fr 1fr;}}
+  @media (max-width:520px){.footer-grid{grid-template-columns:1fr;}}
+  .footer-brand{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+  .footer-brand .logo-slot{width:42px;height:42px;}
+  .footer-brand span{font-family:'Poppins',sans-serif;font-weight:700;color:#fff;font-size:15px;}
+  .footer-grid p.desc{font-size:13.5px;line-height:1.7;max-width:280px;}
+  .agency-footer h4{color:#fff;font-size:14px;margin:0 0 16px;font-weight:600;}
+  .agency-footer ul{list-style:none;margin:0;padding:0;display:grid;gap:11px;}
+  .agency-footer a{text-decoration:none;color:var(--muted);font-size:13.5px;}
+  .agency-footer a:hover{color:var(--gold-400);}
+
+  /* =========================================================
+     7. STANDARD FOOTER — Government Directory link, Seal of
+        the Republic, public-domain notice (GWTD Sec. 3.1)
+     ========================================================= */
+  .standard-footer{background:var(--forest-950);border-top:1px solid var(--forest-line);}
+  .standard-footer .wrap{padding:34px 28px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;}
+  .standard-footer .gov-seal{width:46px;height:46px;border-radius:50%;border:1.5px solid var(--gold-500);color:var(--gold-400);display:flex;align-items:center;justify-content:center;margin-bottom:4px;}
+  .standard-footer .directory-link{color:var(--gold-400);text-decoration:none;font-weight:600;font-size:13.5px;}
+  .standard-footer .directory-link:hover{text-decoration:underline;}
+  .standard-footer .public-domain{color:#8fa596;font-size:12.5px;max-width:480px;}
+  .standard-footer .copyright{color:#8fa596;font-size:12px;margin-top:6px;}
+  .standard-footer .socials{display:flex;gap:12px;margin-top:8px;}
+  .standard-footer .socials a{width:32px;height:32px;border-radius:50%;border:1px solid var(--forest-line);display:flex;align-items:center;justify-content:center;color:var(--muted);}
+  .standard-footer .socials a:hover{border-color:var(--gold-500);color:var(--gold-400);}
+
+  ::selection{background:var(--gold-400);color:#231802;}
