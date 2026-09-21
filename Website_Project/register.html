@@ -11,6 +11,14 @@
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
+    :root {
+      --forest-900: #0c2a1e;
+      --forest-800: #18392b;
+      --forest-line: rgba(255, 255, 255, 0.15);
+      --gold-500: #d4af78;
+      --gold-400: #e3b53f;
+    }
+     
     body {
       background-color: #0c2a1e;
       background-image:
@@ -20,16 +28,63 @@
         linear-gradient(160deg, #0a2318 0%, #123725 45%, #0c2a1e 100%);
       background-attachment: fixed;
     }
+
+    .masthead { background: var(--forest-900); }
+    .masthead .wrap{display:flex;align-items:center;justify-content:space-between;padding:16px 28px;gap:24px;}
+    .masthead-left{display:flex;align-items:center;gap:18px;min-width:0;}
+    .masthead-right{display:flex;align-items:center;gap:22px;flex-shrink:0;}
+    .logo-slot{width:56px;height:56px;border-radius:50%;background:var(--forest-800);border:1.5px solid var(--gold-500);display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;}
+    .logo-slot img{width:100%;height:100%;object-fit:contain;}
+    .logo-slot .fallback{color:var(--gold-400);font-family:'Poppins',sans-serif;font-weight:700;font-size:13px;}
+    .logo-label{font-size:10px;letter-spacing:.06em;color:#8fa596;text-transform:uppercase;text-align:center;margin-top:4px;}
+    .logo-col{display:flex;flex-direction:column;align-items:center;flex-shrink:0;}
+    .masthead-divider{width:1px;align-self:stretch;background:var(--forest-line);flex-shrink:0;}
+    .masthead-text{color:#fff;min-width:0;}
+    .masthead-text .country{font-size:11.5px;letter-spacing:.08em;color:var(--gold-400);font-weight:600;text-transform:uppercase;margin:0 0 4px;}
+    .masthead-text .agency{font-size:19px;font-weight:700;margin:0;}
+    .masthead-text .tagline{font-size:13px;color:#e3b53f;margin:3px 0 0;}
+
   </style>
 </head>
 
-<body class="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat">
+<body class="min-h-screen flex flex-col items-center bg-cover bg-center bg-no-repeat">
 
-<header class="fixed top-0 left-0 right-0 z-50 bg-green-950 px-6 py-2">
-  <img src="./img/logo2.png" alt="logo" class="w-12 h-12">
-</header>
+<div class="masthead w-full">
+  <div class="wrap">
+    <div class="masthead-left">
+      <div class="logo-slot" id="webLogo">
+        <img src="./img/logoweb2.png" alt="Web Logo"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <span class="fallback" style="display:none;">WEB</span>
+      </div>
+      <div class="masthead-divider"></div>
+      <div class="masthead-text">
+        <p class="agency">Eastern Samar State University</p>
+        <p class="tagline">Main Campus, Borongan City — ESSU Main: Registrar Online Processing System</p>
+      </div>
+    </div>
 
+    <div class="masthead-right">
+      <div class="logo-slot" id="schoolLogo">
+        <img src="./img/logo2.png" alt="School Logo"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <span class="fallback" style="display:none;">ESSU</span>
+      </div>
+      <div class="logo-slot" id="bagongPilipinasLogo">
+        <img src="./img/BAGONG-PILIPINAS-LOGO-1-1.png" alt="Bagong Pilipinas Logo"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <span class="fallback" style="display:none;">Logo</span>
+      </div>
+      <div class="logo-slot" id="transparencyLogo">
+        <img src="./img/transparencylogo.png" alt="Transparency Logo"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <span class="fallback" style="display:none;">Logo</span>
+      </div>
+    </div>
+  </div>
+</div>
 
+<div class="w-full flex-1 flex items-center justify-center p-8">
 <div class="w-full max-w-xl p-8 rounded-2xl shadow-2xl border border-white/20" style="background:#18392b">
 
   <form action="#" method="POST" id="registerForm">
