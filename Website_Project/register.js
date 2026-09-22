@@ -180,7 +180,7 @@ event.preventDefault();
         });
 
         alert("Registration Successful!");
-        window.location.href = "index.html";
+        window.location.href = "login.html";
         
     } catch (error) {
         console.error("Submission Error:", error);
