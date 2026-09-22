@@ -6,13 +6,12 @@
    The fees below are PLACEHOLDERS. Replace them with the official rates.
    ===================================================================== */
 const CONFIG = {
-  loginUrl: 'index.html',                    // where "Log out" sends the student
+  loginUrl: 'login.html',                    // where "Log out" sends the student
   storageKey: 'essu-registrar-dashboard-v1', // demo persistence (swap for your backend)
   maxCopies: 10,
 
   // Help links used by the search bar
   help: {
-    faqUrl: 'index.html#faq',               // FAQ section of your landing page (check the id)
     registrarEmail: 'registrar@essu.edu.ph' // placeholder: use the real Registrar email
   },
 
